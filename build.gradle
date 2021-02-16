@@ -1,0 +1,30 @@
+plugins {
+    id 'dev.gradleplugins.documentation.github-pages-site' version '1.0.4'
+    id 'dev.gradleplugins.documentation.jbake-render' version '1.0.4'
+}
+
+site {
+    customDomain = subdomain('repo.nokee.dev')
+    repositorySlug = 'nokeedev/repo.nokee.dev'
+    sources.from(jbake.destinationDirectory)
+}
+
+jbake {
+    content.from(tasks.register("renameReadMeFile", Sync) {it.from('README.adoc').rename('README.adoc', 'index.adoc').into("build/tmp/${it.name}") })
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        name = 'docsNokeeDev'
+        url = 's3://docs.nokee.dev/'
+        credentials(AwsCredentials)
+    }
+}
+
+dependencies {
+    assets 'dev.nokee.docs:jbake:latest.integration'
+    templates 'dev.nokee.docs:jbake:latest.integration'
+    configuration 'dev.nokee.docs:jbake:latest.integration'
+}
+
