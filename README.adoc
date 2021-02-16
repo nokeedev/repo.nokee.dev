@@ -2,7 +2,7 @@
 :jbake-status: published
 = Nokee Artifact Repository
 
-NOTE: See the link:https://nokee.dev/blog/nokee-artifact-repositories[announcement blog post] for more information.
+NOTE: See the link:https://nokee.dev/blog/farewell-bintray[announcement blog post] for more information.
 
 Welcome to the official Nokee artifact repositories.
 
